@@ -1,0 +1,150 @@
+@using ERPWeb.Business.GlobalM;
+
+@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+
+    var manage = PermissionManage.OperatorHasPermissionValue("sysuser.manage");
+    var manageSysPermission = PermissionManage.OperatorHasPermissionValue("sysuser.manageSysPermission");
+}
+
+@section toolbar{
+    @if (manage)
+    {
+        <a id="add" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a> 
+        <a id="delete" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+    }
+}
+
+@section search{
+    <div class="search_wrapper">
+        <div class="search_item">
+            <label class="search_label">部品名</label> 
+            <input name="keyword" class="easyui-textbox" style="width:150px" />
+        </div>
+        <div class="search_submit">
+            <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchGrid(this,'#dataTable')">查询</a>
+        </div>
+    </div>
+}
+<div id="dataTable">
+
+</div>
+
+<script>
+    var rootUrl = '@Url.Content("~/")';
+    var manageSysPermission =@manageSysPermission.ToString().ToLower();
+
+    function initTable() {
+        $('#dataTable').datagrid({
+            url: rootUrl + 'GlobalM/Machine/GetDataList',
+            method: 'POST',
+            //queryParams: { 'id': id },
+            idField: 'Id',
+            fit: true,
+            fitColumns: true,
+            singleSelect: false,
+            selectOnCheck: false,
+            checkOnSelect: false,
+            //rownumbers: true,
+            pagination: true,
+            pageSize: 30,
+            //nowrap: false,
+            pageList: [30, 50, 100, 150, 200],
+            //showFooter: true,
+            columns: [[
+                { title: 'ck', field: 'ck', checkbox: true },
+                { title: 'ID', field: 'id', width: 50 },
+                { title: '机种', field: 'model', width: 80 },
+                { title: '机台名', field: 'name', width: 200 },
+                { title: '机台号', field: 'code', width: 80 },
+                { title: '状态', field: 'statusname', width: 100 },
+                { title: '模式', field: 'modename', width: 100 },
+                { title: '状态源', field: 'flagalias', width: 200 },
+                { title: '模式源', field: 'flag1alias', width: 200 },
+                { title: '变更时间', field: 'chtime', width: 300 }, 
+                { title: '担当', field: 'userno', width: 200 },
+                {
+                    title: '操作', field: '_', width: 100, fixed: true, formatter: function (value, row) {
+                        var html = '';
+                        if (manageSysPermission) {
+                            html += '<a href="javascript:;" onclick="callChange(\'{0}\')">修改</a>'.format(row['id']);
+                        } 
+                        return html;
+                    }
+                }
+            ]],
+            onBeforeSelect: function () {
+                return false;
+            }
+        });
+    }
+
+    $(function () {
+        initTable();
+
+        //添加数据
+        $('#add').click(function () {
+            dialogOpen({
+                id: 'form',
+                title: '添加数据',
+                width: 500,
+                height: 445,
+                url: rootUrl + 'GlobalM/Machine/Form',
+            });
+        });
+
+        //修改数据
+        $('#edit').click(function () {
+            var selected = $("#dataTable").datagrid("getChecked");
+            if (!selected || !selected.length) {
+                dialogError('请选择要修改的记录!');
+                return;
+            }
+            var id = selected[0].Id;
+
+            dialogOpen({
+                id: 'form',
+                title: '修改数据',
+                width: 500,
+                height: 445,
+                url: rootUrl + 'GlobalM/Machine/Form?id=' + id,
+            });
+        });
+
+        //删除数据
+        $('#delete').click(function () {
+            var checked = $("#dataTable").datagrid("getChecked");
+            if (!checked || !checked.length) {
+                dialogError('请选择要删除的记录!');
+                return;
+            }
+            var ids = $.map(checked, function (item) {
+                return item['id'];
+            });
+
+            dialogComfirm('确认删除吗？', function () {
+                $.postJSON(rootUrl + 'GlobalM/Machine/DeleteData', { ids: JSON.stringify(ids) }, function (resJson) {
+                    if (resJson.Success) {
+                        $('#dataTable').datagrid('clearSelections').datagrid('clearChecked');
+                        $('#dataTable').datagrid('reload');
+                        dialogMsg('删除成功!');
+                    }
+                    else {
+                        dialogError(resJson.Msg);
+                    }
+                });
+            });
+        });
+    });
+
+    //设置权限
+    function callChange(id) {
+        dialogOpen({
+            id: 'form',
+            title: '修改数据',
+            width: '60%',
+            height: '80%',
+            url: rootUrl + 'GlobalM/Machine/form?id={0}'.format(id),
+        });
+    }
+</script>

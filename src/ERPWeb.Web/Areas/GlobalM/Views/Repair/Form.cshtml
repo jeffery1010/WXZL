@@ -1,0 +1,160 @@
+@using ERPWeb.Entity.GlobalM;
+@using ERPWeb.Util;
+@using ERPWeb.Business.GlobalM;
+@using ERPWeb.Entity.SPC;
+@using ERPWeb.Business.Lot;
+
+@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+
+    var obj = (RepairModel)Model;
+    string mtnamelist = "[]";
+    string unitnamelist = "[]";
+    if (!obj.id.IsNullOrEmpty())
+    {
+        mtnamelist = obj.mtnames;
+        unitnamelist = obj.unitnamelist;
+    }
+    string str = obj.ToJson();
+    var objStr = Html.Raw(obj.ToJson());
+}
+
+<form id="dataForm" enctype="multipart/form-data" class="easyui-form" method="post" data-options="novalidate:true">
+    <table class="table_base">
+        <colgroup>
+            <col style="width:80px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>机种</th>
+                <td>
+                    <select id="model" name="model" class="easyui-combobox" data-options="width:200,value:'@obj.model',required:true">
+                        <option value="497" selected>497</option>
+                        <option value="496">496</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>修理类别</th>
+                <td>
+                    <input id="repairtypeName" name="repairtypeName" class="easyui-combobox" data-options="
+                        width:200,
+                        valueField: 'code',
+                        textField: 'name',
+                        multiple:false,
+                        value:'@obj.repairtypeName',
+                        url: '/GlobalM/Repair/GetRepairTypeList_NoPagin'
+                    ">
+                </td>
+            </tr>
+            <tr>
+                <th>类别编号</th>
+                <td>
+                    <input id="repairtypeCode" name="repairtypeCode" value="@obj.repairtypeCode" class="easyui-textbox" data-options="width:'200px',required:true">
+                </td>
+            </tr>
+
+            <tr>
+                <th>投放形式</th>
+                <td>
+                    <select id="inputtypeid" name="inputtypeid" class="easyui-combobox" data-options="width:200,value:'@obj.inputtypeid',required:true">
+                        <option value="1">托盘</option>
+                        <option value="2">捆包</option>
+                        <option value="0">其它</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>修理部品</th>
+                <td>
+                    <input id="unitnames" name="unitnames" class="easyui-combobox" data-options="
+                        width:200,
+                        valueField: 'id',
+                        textField: 'name',
+                        multiple:true,
+                        value:'@unitnamelist',
+                        url: '/GlobalM/Repair/GetUnitList_NoPagin'
+                    ">
+                </td>
+            </tr>
+            <tr>
+                <th>投入工位</th>
+                <td>
+                    <input id="mtids" name="mtids" class="easyui-combobox" data-options="
+                        width:200,
+                        valueField: 'mtid',
+                        textField: 'mtno',
+                        multiple:true,
+                        value:'@mtnamelist',
+                        url: '/GlobalM/Repair/GetMacTypeList_NoPagin'
+                    ">
+                </td>
+            </tr>
+            <tr>
+                <th>生效日期</th>
+                <td>
+                    <input id="effecttime" name="effecttime" type="text" class="easyui-datebox" data-options="width:'200',required:false,value:'@(obj.effecttime.ToString())'">
+                </td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td>
+                    <input id="desr" name="desr" type="text" class="easyui-datebox" data-options="width:'200',required:false,value:'@(obj.desr?.ToString())'">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+@section foottoolbar{
+    <a id="saveForm" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+}
+ 
+<script>
+    var rootUrl = '@Url.Content("~/")';
+    var theEntity = @objStr;
+    
+   
+    $(function () {
+        $('#saveForm').click(function () {
+            if (!$('#dataForm').form('enableValidation').form('validate'))
+                return; 
+
+            var formValues = $('#dataForm').getValues();
+               
+            $.extend(theEntity, formValues);
+           
+            //theEntity['model'] = $('#model').combobox("getValues");
+            //alert(4567);
+            //theEntity['repairtypeCode'] = $('#repairtypeCode').textbox("getValue");
+            //alert(theEntity['repairtypeCode']);
+            //theEntity['inputtypeid'] = $('#inputtypeid').combobox("getValues");
+            //alert(theEntity['inputtypeid'] );
+            //theEntity['effecttime'] = $('#effecttime').textbox("getValue");
+            //alert(theEntity['effecttime']);
+            var mtids = $('#mtids').combobox('getValues');
+            var unitids = $('#unitnames').combobox('getValues');
+            //alert(mtids)
+            //alert(mtids.join(','))
+            theEntity['mtids'] = mtids.join(',');//JSON.stringify(mtids);
+            theEntity['unitids'] = unitids.join(',');
+            alert('the theEntity is2:' + theEntity['mtids']);
+           
+            $.postJSON(rootUrl + 'GlobalM/Repair/SaveData', theEntity, function (resJson) {
+                if (resJson.Success) {
+                    parent.$('#dataTable').datagrid('clearChecked').datagrid('reload');
+                    parent.dialogMsg('保存成功!');
+                    parent.dialogClose('form');
+                }
+                else {
+                    dialogError(resJson.Msg);
+                }
+            });
+        });
+        $("#repairtypeName").combobox({
+            onChange: function (n, o) { 
+                $("#repairtypeCode").textbox('setValue',n);
+            }
+        }); 
+    });
+</script>

@@ -1,0 +1,298 @@
+@using ERPWeb.Entity.BasicInfo;
+@using ERPWeb.Util;
+@using ERPWeb.Business.EntityExtend;
+
+@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+
+    var obj = (GoodsExtend)Model;
+    var objStr = Html.Raw(obj.ToJson());
+}
+<script src="~/Scripts/util/formatshow.js"></script>
+<script src="~/Scripts/util/imgmouseeventshow.js"></script>
+<form id="dataForm" enctype="multipart/form-data" class="easyui-form" method="post" data-options="novalidate:true">
+    <table class="table_base">
+        <colgroup>
+            <col style="width:70px;" />
+            <col style="width:70px;" />
+            <col style="width:70px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>货品图片</th>
+                <td colspan="1"> 
+                    <img height="100" ,width="100" id="imgfile" src="data:image;base64,@obj.GoodImgBase64" />
+                    <img height="30" ,width="30" src="~/Images/upload0.jpg" id="imgupload" title="修改图片" />
+                    <input width="1" style="visibility:hidden" height="1" accept="image/*" name="upimage" id="upload_file" type="file" />
+                    <input type="hidden" id="imgb64" value="@obj.GoodImgBase64" />
+                </td>
+                <th>货品类别</th>
+                <td id="tdsort" colspan="3" style="padding-left:30px;"></td>
+            </tr>
+            <tr>
+                <th>货品编码</th>
+                <td><input name="Code" value="@obj.Code" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>货品名称</th>
+                <td><input name="Name" value="@obj.Name" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>型号</th>
+                <td><input name="Spec" value="@obj.Spec" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+            </tr>
+            <tr>
+                <th>条码</th>
+                <td><input name="Barcode" value="@obj.Barcode" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>批次号</th>
+                <td><input name="BatchSN" value="@obj.BatchSN" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>拼音缩写</th>
+                <td><input name="ShortSpell" value="@obj.ShortSpell" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>实际数量</th>
+                <td><input name="RealQty" value="@obj.RealQty" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>账面数量</th>
+                <td><input name="AccountQty" value="@obj.AccountQty" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+
+            </tr>
+            <tr>
+                <th>库存上限</th>
+                <td><input name="StockUpper" value="@obj.StockUpper" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>最小库存</th>
+                <td><input name="StockLower" value="@obj.StockLower" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>库存数量</th>
+                <td><input name="StockQty" value="@obj.StockQty" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>清货价</th>
+                <td><input name="ClearPrice" value="@obj.ClearPrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>单位</th>
+                <td><input name="Unit" value="@obj.Unit" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>单位比率</th>
+                <td><input name="UnitRate" value="@obj.UnitRate" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>简称</th>
+                <td><input name="ShortName" value="@obj.ShortName" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>生产日期</th>
+                <td>
+                    <input title="ProduceDate" name="ProduceDate" value="@obj.ProduceDate" class="easyui-datetimebox" data-options="width:'200px',formatter:dateformatter,parser:dateparser" />
+                </td>
+                <th>有效日期</th>
+                <td>
+                    <input title="EffectDate" name="EffectDate" value="@obj.EffectDate" class="easyui-datetimebox" data-options="width:'200px',formatter:dateformatter,parser:dateparser" />
+                </td>
+            </tr>
+            <tr>
+                <th>单位重量</th>
+                <td><input name="UnitWeight" value="@obj.UnitWeight" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>货品属性</th>
+                <td id="tdgoodproperty"><input id="hidpid" value="@obj.PorpertyId" type="hidden" /></td>
+                <th>总量</th>
+                <td><input name="Amount" value="@obj.Amount" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>是否基本单位</th>
+                <td>          <input name="IsBUnit" type="checkbox" @(obj.IsBUnit == true ? "checked" : "") />     </td>
+                <th>零售价</th>
+                <td><input name="RetailPrice" value="@obj.RetailPrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>税率</th>
+                <td><input name="TaxRate" value="@obj.TaxRate" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>批发价</th>
+                <td><input name="BatchPrice" value="@obj.BatchPrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>会员价</th>
+                <td><input name="MemberPrice" value="@obj.MemberPrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>促销价</th>
+                <td><input name="PromotePrice" value="@obj.PromotePrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+            </tr>
+            <tr>
+                <th>采购价</th>
+                <td><input name="PurchasePrice" value="@obj.PurchasePrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>预留价</th>
+                <td><input name="ReservedPrice" value="@obj.ReservedPrice" class="easyui-textbox" data-options="width:'200px',required:true"></td>
+                <th>成本核算</th>
+                <td id="tdcostcompstyle"></td>
+            </tr>
+            <tr>
+                <th>自定义1</th>
+                <td><input name="ExtendF1" value="@obj.ExtendF1" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>自定义2</th>
+                <td><input name="ExtendF2" value="@obj.ExtendF2" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>自定义3</th>
+                <td><input name="ExtendF3" value="@obj.ExtendF3" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+            </tr>
+            <tr>
+                <th>品质日期</th>
+                <td>
+                    <input title="QualityDate" name="QualityDate" value="@obj.QualityDate" class="easyui-datetimebox" data-options="width:'200px',formatter:dateformatter,parser:dateparser" />
+
+                </td>
+                <th>品质类别</th>
+                <td><input name="QualityKind" value="@obj.QualityKind" class="easyui-textbox" data-options="width:'200px',required:false"></td>
+                <th>是否无效</th>
+                <td>       <input type="checkbox" name="IsInValid" @(obj.IsInvalid ? "checked" : "") />    </td>
+            </tr>
+            <tr>
+                <th>备注</th>
+                <td colspan="5">
+                    <input name="Remark" value="@obj.Remark" class="easyui-textbox" data-options="width:'830px',required:false" />
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="max" style="position:fixed;top:0px;right:0px;" id="divmax">
+        <img id="imgformaxshow" />
+    </div>
+</form>
+@section foottoolbar{
+    <a id="saveForm" href="javascript:;" class="easyui-linkbutton" style="width:120px;height:35px;" data-options="iconCls:'icon-save'">保存</a>
+}
+
+
+<script>
+    var rootUrl = '@Url.Content("~/")';
+    var theEntity = @objStr;
+    var sortid = @obj.SortId;
+    var ccid =@obj.CostCheckId;
+
+
+        $(function () {
+
+            $("#imgfile").mouseover(function () {
+                //获取事件                 
+                imgMouseOver(event.target, "divmax"); 
+            });
+            $("#imgfile").mouseout(function () { 
+                imgMouseOut(event.target, "divmax"); 
+            });
+        ///初始化货品类别Radio List
+        $.getJSON(rootUrl + 'GlobalM/GoodSort/GetGoodSortList?is=124', function (resJson) {
+
+            if (resJson != null && resJson.length > 0) {
+                var list = resJson;
+                for (var i in list) {
+                    var appstr = '<input type="radio" name="rdsort" value="' + list[i].Code + '" ';// ;
+                    //初始化选中项目
+                    if (list[i].Id == sortid)
+                        appstr += ' checked ';
+                    appstr +=' /><span>' + list[i].Name + '&nbsp;&nbsp;</span > '
+                    $input = $(appstr);
+                    $('#tdsort').append($input);
+                }
+            }
+            else {
+                dialogError(resJson.Msg);
+            }
+        });
+        ///初始化成本计算方法Radio List
+        $.getJSON(rootUrl + 'GlobalM/CostComputeStyle/GetCostCompStyleList', function (resJson) {
+
+            if (resJson != null && resJson.length > 0) {
+                var list = resJson;
+                for (var i in list) {
+                    var appstr = '<input type="radio" name="rdcostcompstyle" value="' + list[i].Id + '" ';// ;
+                    //初始化选中项目
+
+                    if (list[i].Id == ccid)
+                        appstr += ' checked ';
+                    appstr += ' /><span>' + list[i].Name + '&nbsp;&nbsp;</span > '
+                    $input = $(appstr);
+                    $('#tdcostcompstyle').append($input);
+                }
+            }
+            else {
+                dialogError(resJson.Msg);
+            }
+        });
+function isEmpty(obj)
+{
+    for (var name in obj) {
+        return false;
+    }
+
+     return true;
+
+}
+        ///初始化货品属性Radio List
+        $.getJSON(rootUrl + 'GlobalM/GoodProperty/GetGoodPropertyList?is=124', function (resJson) {
+
+            console.log(resJson);
+
+            if (resJson != null && resJson.length > 0) {
+
+                var list = resJson;
+                for (var i in list) {
+                    var appstr = '<input type="radio" name="rdgoodproperty" value="' + list[i].Code + '" ';// ;
+                    //初始化选中项目
+
+                    //var x = isEmpty(@obj.PorpertyId);
+                    var y = '@obj.PorpertyId';
+                    if (y!="") {
+                        if (list[i].Id == y)
+                            appstr += ' checked ';
+                    }
+
+                    appstr += ' /><span>' + list[i].Name + '&nbsp;&nbsp;</span > '
+                    $input = $(appstr);
+                    $('#tdgoodproperty').append($input);
+                }
+            }
+            else {
+                dialogError(resJson.Msg);
+            }
+        });
+        $("#imgupload").click(function () {
+            $("#upload_file").click();
+        });
+        $("#imgupload").mouseover(function () {
+
+            console.log(this);
+            var obj = $("#imgupload");
+            obj.attr("src", "../../Images/upload.jpg");
+        });
+        $("#upload_file").change (function () {
+            gen_base64();
+        });
+        $("#imgupload").mouseout(function () {
+            var obj = $("#imgupload");
+            obj.attr("src", "../../Images/upload0.jpg");
+        });
+        $('#saveForm').click(function () {
+            if (!$('#dataForm').form('enableValidation').form('validate'))
+                return;
+
+            var formValues = $('#dataForm').getValues();
+            console.log(formValues);
+            $.extend(theEntity, formValues);
+            console.log($.extend(theEntity, formValues));
+            var newimg = $('#imgb64').val();
+            console.log(formValues.IsBUnit);
+            theEntity.GoodImgBase64 = newimg;
+           
+            //if (newimg != "")
+                
+            $.postJSON(rootUrl + 'GlobalM/Goods/SaveData', theEntity, function (resJson) {
+                if (resJson.Success) {
+                    parent.$('#dataTable').datagrid('clearChecked').datagrid('reload');
+                    parent.dialogMsg('保存成功!');
+                    parent.dialogClose('form');
+                }
+                else {
+                    dialogError(resJson.Msg);
+                }
+            });
+        });
+    });
+    function gen_base64() {
+        var f = $("#upload_file")
+        var file = f[0].files[0];
+        console.log(file);
+                r = new FileReader();  //本地预览
+                r.onload = function () {
+                    $('#imgfile').attr("src", r.result);
+                   
+                    $('#imgb64').val(r.result);
+                }
+                r.readAsDataURL(file);
+            }
+</script>

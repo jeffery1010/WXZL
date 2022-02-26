@@ -1,0 +1,18 @@
+﻿<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Mac/Search.js"></script>
+<style type="text/css"></style>
+
+<div class="macToolBar">
+    IP4:<input type="text" class="inputtext" title="ip4" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    名称:<input type="text" class="inputtext" title="name" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input class="easyui-combobox" title="isvalid" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'" onclick="clickSearch(this);">搜索</button>
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'" onclick="clickSearchClear(this);">清除</button>
+</div>
+
+
+<table class="easyui-datagrid" title="SearchMac" style=""></table>

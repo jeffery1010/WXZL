@@ -1,0 +1,18 @@
+﻿<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/XPath/Search.js"></script>
+<style type="text/css"></style>
+
+<div class="XPathToolBar">
+    Extend:<input type="text" class="inputtext" title="extend" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    频率:<input type="text" style="width:50px;" class="inputtext" title="ratemin" />-<input type="text" style="width:50px;" class="inputtext" title="ratemax" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input class="easyui-combobox" title="isvalid" readonly="readonly" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'" onclick="clickSearch(this);">搜索</button>
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'" onclick="clickSearchClear(this);">清除</button>
+
+</div>
+
+<table class="easyui-datagrid" title="SearchXPath" style=""></table>

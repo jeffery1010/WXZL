@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SubModelChange";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Machine/SubModelChange.js"></script>
+
+<div id="searchSMCToolBar">
+    <a id="btnSMCUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnSMCSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+
+</div>
+
+
+<table id="SMCTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="SMCDialog" class="easyui-dialog" title="SMCDialog" style="padding:10px 10px 10px 10px;width:250px;">
+    <table class="dialogTable">
+        <tr>
+            <td>线别：</td>
+            <td><input style="width:100%" type="text" id="dgLine" class="easyui-textbox" data-options="prompt:'线别(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>机种：</td>
+            <td>
+                <select id="dgSubmodel" class="easyui-combobox" style="width:100%;">
+                    <option value="104">104</option>
+                    <option value="105">105</option>
+                    <option value="106">106</option>
+                    <option value="107">107</option>
+                </select>
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+    <input style="width:1px;height:1px;overflow:hidden;" type="text" id="dgTBName" class="easyui-textbox" data-options="prompt:'表名'" readonly="readonly" />
+</div>
+

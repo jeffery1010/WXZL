@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Part/Index.js"></script>
+<link href="~/Static/Css/All.css" rel="stylesheet" />
+<style type="text/css">
+    #PartDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #PartDialog > .dialogTable tr td {
+            padding: 4px 3px 3px 3px;
+        }
+</style>
+<div id="searchPartToolBar">
+    <table id="SearchPartWhere" class="tableType1">
+        <tr>
+            <td style="width:50px;text-align:center;">机&nbsp;种</td>
+            <td colspan="3" id="tdPartModel">
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50px;text-align:center;">工&nbsp;位</td>
+            <td colspan="3" id="tdPartWorkStation">
+                <span style="color:red;font-weight:bold;">请先选择机种</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:50px;text-align:center;">位&nbsp;置</td>
+            <td>
+                <input id="searchPartCode" type="text" style="" class="easyui-textbox" data-options="prompt:'位置'" />
+            </td>
+            <td style="width:50px;text-align:center;">工&nbsp;具</td>
+            <td>
+                <a id="btnPartSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+                <a id="btnPartClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+                <a id="btnPartInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+                <a id="btnPartUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<table id="PartTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="PartDialog" class="easyui-dialog" title="PartDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序&nbsp;号</td>
+            <td><input style="width:100px" type="text" id="dgPartId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td>机&nbsp;种</td>
+            <td id="dgPartModel"></td>
+        </tr>
+        <tr>
+            <td>工&nbsp;位</td>
+            <td id="dgPartWorkStation"></td>
+        </tr>
+        <tr>
+            <td>编&nbsp;码</td>
+            <td><input style="width:200px;" type="text" id="dgPartCode" class="easyui-textbox" data-options="prompt:'编码'" /></td>
+        </tr>
+        <tr>
+            <td>描&nbsp;述</td>
+            <td><input style="width:500px;" type="text" id="dgPartDetail" class="easyui-textbox" data-options="prompt:'描述'" /></td>
+        </tr>
+    </table>
+
+</div>
+

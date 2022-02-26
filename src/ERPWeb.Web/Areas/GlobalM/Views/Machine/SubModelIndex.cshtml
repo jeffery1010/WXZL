@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "SubModelIndex";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Machine/SubModelIndex.js"></script>
+
+
+
+<div id="searchSMToolBar">
+    <a id="btnSMUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchSMName" type="text" style="" class="easyui-textbox" data-options="prompt:'计算机名称'" />
+    <a id="btnSMSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnSMClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="SMTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="SMDialog" class="easyui-dialog" title="SMDialog" style="padding:10px 10px 10px 10px;width:650px;">
+    <table class="dialogTable">
+        <tr>
+            <td><input style="width:100%" type="text" id="dgSMId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td><input style="width:100%" type="text" id="dgSMName" class="easyui-textbox" data-options="prompt:'名称'" readonly="readonly"  /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+    <input style="width:0px;height:0px;display:block;overflow:hidden;border:none;" type="text" id="dgSubmodelIdList" readonly="readonly" />
+    <table id="dgSubmodelTable" class="easyui-datagrid"></table>
+
+</div>

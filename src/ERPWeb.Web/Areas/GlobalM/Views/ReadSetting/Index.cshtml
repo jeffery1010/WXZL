@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/ReadSetting/Index.js"></script>
+<style type="text/css">
+</style>
+
+<div id="searchReadSettingToolBar">
+    <a id="btnReadSettingInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnReadSettingUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    所属控制台:<input id="searchReadSettingConsoleId" type="text" style="width:50px;" onclick="selConsole();" readonly="readonly" /><span id="searchReadSettingConsoleName"></span>
+    <br />
+    <a id="btnReadSettingSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnReadSettingClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    所属XPath :<input id="searchReadSettingXPathId" type="text" style="width:50px;" onclick="selXPath();" readonly="readonly" /><span id="searchReadSettingXPathName"></span>
+</div>
+
+
+<table id="ReadSettingTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="ReadSettingDialog" class="easyui-dialog" title="ReadSettingDialog">
+    <table class="dialogTable" style="">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgReadSettingId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>控制台</td>
+            <td><input id="dgReadSettingConsoleId" type="text" style="width:50px;" onclick="selConsole();" readonly="readonly" /><span id="dgReadSettingConsoleName"></span></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>XPath</td>
+            <td><input id="dgReadSettingXPathId" type="text" style="width:50px;" onclick="selXPath();" readonly="readonly" /><span id="dgReadSettingXPathName"></span></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+</div>
+
+
+<div id="searchReadSettingConsole" style="margin:0px auto;"></div>
+<div id="searchReadSettingXPath" style="margin:0px auto;"></div>

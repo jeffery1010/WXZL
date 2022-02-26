@@ -1,0 +1,23 @@
+﻿.min {
+    width: 240px;
+    height: 160px;
+    border: 1px solid black;
+}
+
+.max {
+    width: 720px;
+    height: 580px;
+    float: left;
+    display: none;
+    overflow:visible;
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    padding: 0px;
+    margin: 0px;
+}
+
+    .max img {
+        position: absolute;
+        margin: 0 auto;
+    }

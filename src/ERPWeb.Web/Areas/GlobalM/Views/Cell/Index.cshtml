@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Cell/Index.js"></script>
+<style type="text/css">
+    #CellDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+        #CellDialog > .dialogTable {
+            width:100%;
+        }
+        #CellDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+</style>
+
+<div id="searchCellToolBar">
+    <a id="btnCellInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnCellUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchCellCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchCellName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    机种:<input id="searchCellModel" class="easyui-combobox" data-options="" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchCellIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--全部--',
+			                value: '-1'
+		                },{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnCellSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnCellClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="CellTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="CellDialog" class="easyui-dialog" title="CellDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgCellId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号</td>
+            <td><input style="width:100%" type="text" id="dgCellCode" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgCellName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>机种</td>
+            <td>
+                <input id="dgCellModel" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgCellIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+
+</div>
+

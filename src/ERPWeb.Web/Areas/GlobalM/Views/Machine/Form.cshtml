@@ -1,0 +1,145 @@
+@using ERPWeb.Entity.GlobalM;
+@using ERPWeb.Util;
+@using ERPWeb.Business.GlobalM;
+@using ERPWeb.Entity.SPC;
+@using ERPWeb.Business.PMG;
+
+@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+
+    var obj = (MachineModel)Model; 
+    
+    string str = obj.ToJson();
+    var objStr = Html.Raw(obj.ToJson());
+}
+
+<form id="dataForm" enctype="multipart/form-data" class="easyui-form" method="post" data-options="novalidate:true">
+    <table class="table_base">
+        <colgroup>
+            <col style="width:80px;" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>机种</th>
+                <td>
+                    <input name="model" value="@obj.model" class="easyui-textbox" data-options="width:'200px',required:true" />
+                </td>
+            </tr>
+            <tr>
+                <th>机台名</th>
+                <td>
+                    <input name="name" value="@obj.name" class="easyui-textbox" data-options="width:'200px',required:true" />
+                </td>
+            </tr>
+            <tr>
+                <th>编号</th>
+                <td>
+                    <select id="code" name="code" class="easyui-combobox" data-options="width:200,value:'@obj.code',required:true">
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>生产模式</th>
+                <td>
+                    <select id="modeid" name="modeid" class="easyui-combobox" data-options="width:200,value:'@obj.modeid',required:true">
+                        <option value="1">正常</option>
+                        <option value="2">紧急</option>
+                        <option value="3">返修</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <th>机台状态</th>
+                <td>
+                    <select id="statusid" name="statusid" class="easyui-combobox" data-options="width:200,value:'@obj.statusid',required:true">
+                        <option value="1">正常</option>
+                        <option value="2">修机</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>模式源</th>
+                <td>
+                    <input id="flagalias" name="flagalias" value="@obj.flagalias" disabled class="easyui-textbox" data-options="width:'200px',required:true" />
+                </td>
+            </tr>
+            <tr>
+                <th>状态源</th>
+                <td>
+                    <input  id="flag1alias"  name="flag1alias" value="@obj.flag1alias" disabled class="easyui-textbox" data-options="width:'200px',required:true" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+@section foottoolbar{
+    <a id="saveForm" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+}
+ 
+<script>
+    var rootUrl = '@Url.Content("~/")';
+    var theEntity = @objStr;
+    
+   
+    $(function () {
+        $('#saveForm').click(function () {
+            if (!$('#dataForm').form('enableValidation').form('validate'))
+                return; 
+
+            var formValues = $('#dataForm').getValues();
+               
+            $.extend(theEntity, formValues);
+           
+            //theEntity['model'] = $('#model').combobox("getValues");
+            //alert(4567);
+            //theEntity['repairtypeCode'] = $('#repairtypeCode').textbox("getValue");
+            //alert(theEntity['repairtypeCode']);
+            //theEntity['inputtypeid'] = $('#inputtypeid').combobox("getValues");
+            //alert(theEntity['inputtypeid'] );
+            //theEntity['effecttime'] = $('#effecttime').textbox("getValue");
+            //alert(theEntity['effecttime']);
+            //var mtids = $('#mtids').combobox('getValues');
+            //alert(mtids)
+            //alert(mtids.join(','))
+            //theEntity['mtids'] = mtids.join(',');//JSON.stringify(mtids);
+            //alert('the theEntity is2:' + theEntity['mtids']);
+            
+            theEntity['code'] = $("#code").combobox("getValues");
+           
+            theEntity['modeid'] = $("#modeid").combobox("getValues");
+            theEntity['flag'] = 1;
+            theEntity['flag1'] = 1;
+            theEntity['statusid'] = $("#statusid").combobox("getValues");
+            $.postJSON(rootUrl + 'GlobalM/Machine/SaveData', theEntity, function (resJson) {
+                if (resJson.Success) {
+                    parent.$('#dataTable').datagrid('clearChecked').datagrid('reload');
+                    parent.dialogMsg('保存成功!');
+                    parent.dialogClose('form');
+                }
+                else {
+                    dialogError(resJson.Msg);
+                }
+            });
+        });
+        $("#modeid").combobox({
+            onChange: function (n, o) { 
+                $("#flagalias").textbox('setValue',"机台");
+            }
+        }); 
+        $("#statusid").combobox({
+            onChange: function (n, o) {
+                $("#flag1alias").textbox('setValue', "机台");
+            }
+        }); 
+    });
+</script>

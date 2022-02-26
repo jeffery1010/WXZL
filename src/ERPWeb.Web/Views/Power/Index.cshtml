@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/OURPM/Power/Index.js"></script>
+
+<div id="searchPowerToolBar">
+    <a id="btnPowerInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnPowerUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnPowerDelete" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-remove'">删除</a>
+    <input id="searchPowerCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchPowerName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <select id="searchPowerVisible" class="easyui-combobox">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select id="searchPowerEnable" class="easyui-combobox">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    <a id="btnPowerSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnPowerClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="PowerTable" class="easyui-datagrid" data-options="fitColumns:true,singleSelect:true"></table>
+
+
+<div id="PowerDialog" class="easyui-dialog" title="PowerDialog" style="padding:10px 10px 10px 10px;">
+    <table class="dialogTable">
+        <tr class="hidden">
+            <td>序号：</td>
+            <td><input style="width:100%" type="text" id="dgPowerId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号：</td>
+            <td><input style="width:100%" type="text" id="dgPowerCode" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称：</td>
+            <td><input style="width:100%" type="text" id="dgPowerName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>备注：</td>
+            <td><input style="width:100%" type="text" id="dgPowerRemark" class="easyui-textbox" data-options="prompt:'备注'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态：</td>
+            <td>
+                <input style="width:47%" id="dgPowerVisible" class="easyui-switchbutton" data-options="onText:'可见',offText:'不可见'">
+                <input style="width:47%" id="dgPowerEnable" class="easyui-switchbutton" data-options="onText:'激活',offText:'未激活'">
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+</div>
+
+

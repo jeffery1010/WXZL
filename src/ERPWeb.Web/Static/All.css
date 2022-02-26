@@ -1,0 +1,33 @@
+﻿body {
+}
+
+.lblLeadTitle {
+    font-size: 13px;
+    color: darkgray;
+}
+
+.tbxId {
+    border: 1px solid #D4D4D4;
+    background-color: #fff;
+    vertical-align: middle;
+    display: inline-block;
+    height: 25px;
+    width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px 5px 5px 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.hidden {
+    display:block;
+    width:0px;
+    height:0px;
+    overflow:hidden;
+    float:left;
+    border:none;
+}

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+
+<script src="~/Scripts/OURPM/UserInRole/Index.js"></script>
+
+
+
+<div div="searchRelationURToolbar">
+    &nbsp;<span class="lblLeadTitle">人员</span>&nbsp;
+    <input id="searchRelationURUserId" type="text" class="tbxId" readonly="readonly" />
+    <span id="searchRelationURUserName" class="lblLeadTitle"></span>
+    <input id="selectRaletionURSelected" class="hidden" />
+    <br />
+    <input id="searchRelationURCode" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchRelationURName" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <select class="easyui-combobox" id="searchRelationURIsEnable">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select class="easyui-combobox" id="searchRelationURIsValid">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" href="#" id="searchRelationURSearch">搜索</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-clear'" href="#" id="searchRelationURClear">清除</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="#" id="searchRelationURKeep">保存</a>
+</div>
+
+<table class="easyui-datagrid" id="selectRelationURTable"></table>
+<div id="dgPartialUser" style="margin:0px auto;"></div>
+

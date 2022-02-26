@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "CombinationOP";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Search/CombinationOP.js"></script>
+
+<div class="divWhere"></div>
+<div id="indexCombinationOP"></div>
+<a id="btnCombinationOPSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+<a id="btnCombinationOPClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+<a id="btnCombinationOPDownload" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载选中</a>
+<a id="btnCombinationOPDownloadAll" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载所有</a>
+<input id="CombinationOPIdList" style="width:0px;height:0px;display:block;border:none;" />
+<table id="SearchCombinationOPTable" class="easyui-datagrid" style=""></table>
+
+<div class="max" style="position:fixed;top:0px;right:0px;">
+    <img id="imgCombinationOPMaxShow" />
+</div>
+
+

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/WorkStationCell/Index.js"></script>
+<style type="text/css">
+
+</style>
+
+<div id="searchWorkStationCellToolBar">
+    <a id="btnWorkStationCellInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnWorkStationCellUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchWorkStationCellIsValid" class="easyui-combobox" data-options="" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    所属工位:<input id="searchWorkStationCellWSId" type="text" style="width:50px;" onclick="selWS();" readonly="readonly" /><span id="searchWorkStationCellWSName"></span>
+    <br />
+    <a id="btnWorkStationCellSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnWorkStationCellClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    所属线别:<input id="searchWorkStationCellCellId" type="text" style="width:50px;" onclick="selCell();" readonly="readonly" /><span id="searchWorkStationCellCellName"></span>
+</div>
+
+
+<table id="WorkStationCellTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="WorkStationCellDialog" class="easyui-dialog" title="WorkStationCellDialog">
+    <table class="dialogTable" style="width:auto;">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgWorkStationCellId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>工位</td>
+            <td><input id="dgWorkStationCellWSId" type="text" style="width:50px;" onclick="selWS();" readonly="readonly" /><span id="dgWorkStationCellWSName"></span></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>线别</td>
+            <td><input id="dgWorkStationCellCellId" type="text" style="width:50px;" onclick="selCell();" readonly="readonly" /><span id="dgWorkStationCellCellName"></span></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgWorkStationCellIsValid" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div id="searchWorkStationCellWS" style="margin:0px auto;"></div>
+<div id="searchWorkStationCellCell" style="margin:0px auto;"></div>

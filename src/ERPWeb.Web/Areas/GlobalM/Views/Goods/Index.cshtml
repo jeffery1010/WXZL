@@ -1,0 +1,271 @@
+@{
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+} 
+    <style type="text/css" > 
+        .datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber {
+        undefined text-overflow: ellipsis;
+    }
+</style>  
+@section toolbar{
+    <a id="add" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</a>
+    <a id="edit" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="delete" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+}
+
+@section search{
+    <div class="search_wrapper">
+        <div class="search_item">
+            <label class="search_label">查询类别</label>
+            <select name="condition" class="easyui-combobox" data-options="width:100">
+                <option value="">请选择</option>
+
+                <option value="Id">ID</option>
+                <option value="Code">货品编码</option>
+                <option value="Name">货品名称</option>
+                <option value="Spec">型号</option>
+                <option value="Barcode">条码</option>
+                <option value="BatchSN">批次号</option>
+                <option value="ShortSpell">拼音缩写</option>
+                <option value="SortId">货品类别</option>
+                <option value="RealQty">实际数量</option>
+                <option value="AccountQty">账面数量</option>
+                <option value="PorpertyId">货品属性</option> 
+                <option value="CostCheckId">成本核算ID</option>
+                <option value="StockUpper">库存上限</option>
+                <option value="StockLower">最小库存</option>
+                <option value="StockQty">库存数量</option>
+                <option value="ClearPrice">清货价</option>
+                <option value="Unit">单位</option>
+                <option value="UnitRate">单位比率</option>
+                <option value="ShortName">简称</option>
+                <option value="IsInvalid">是否无效</option>
+                <option value="QueryQty">查询数量</option>
+                <option value="ProduceDate">生产日期</option>
+                <option value="EffectDate">有效日期</option>
+                <option value="CreateTime">创建时间</option>
+                <option value="CreateUserNo">创建用户</option>
+                <option value="ChUserNo">更新用户</option>
+                <option value="Chtime">更新时间</option>
+                <option value="UnitWeight">单位重量</option>
+                <option value="Remark">备注</option>
+                <option value="Amount">总量</option>
+                <option value="IsBUnit">是否基本单位</option>
+                <option value="Image">图片</option>
+                <option value="RetailPrice">零售价</option>
+                <option value="BatchPrice">批发价</option>
+                <option value="MemberPrice">会员价</option>
+                <option value="PromotePrice">促销价</option>
+                <option value="PurchasePrice">采购价</option>
+                <option value="ReservedPrice">预留价</option>
+                <option value="Degree">等级</option>
+                <option value="ExtendF1">自定义1</option>
+                <option value="ExtendF2">自定义2</option>
+                <option value="ExtendF3">自定义3</option>
+                <option value="SortCode">分类编号</option>
+                <option value="PropertyName">货品属性</option>
+                <option value="TradeUnitId">贸易单位ID</option>
+                <option value="QualityDate">品质日期</option>
+                <option value="QualityKind">品质类别</option>
+                <option value="TaxRate">税率</option>
+                <option value="Flag">状态</option>
+            </select>
+            <input name="keyword" class="easyui-textbox" style="width:150px" />
+        </div>
+        <div class="search_submit">
+            <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchGrid(this,'#dataTable')">查询</a>
+        </div>
+    </div>
+}
+<div id="dataTable">
+
+</div>
+<div class="max" style="position:fixed;top:0px;right:0px;">
+    <img id="imgForTimeMaxShow" />
+</div>
+<script>
+    var x = '@Url.Content("~/")';
+    var turl = x + 'GlobalM/';
+    var formWidth = 1200;
+    var formHeight = 1915;
+    function imgMouseOver(obj) {
+        var src = $(obj).attr('src');
+        $('div.max').find('img:first').attr('src', src);
+        $('div.max').css({ "display": "block" });
+    }
+    function imgMouseOut(obj) {
+        $('div.max').css({ "display": "none" });
+    }
+    function imgMouseMove(obj) {
+        var docId = 'imgformaxshow';
+        var bWidth = document.body.scrollWidth * 0.6;
+        var arr = getWHPX(docId);
+        var x = 0;
+        var width = 0;
+        var height = 0;
+        if (arr[0] > bWidth) {
+            x = bWidth / arr[0];
+            width = arr[0] * x;
+            height = arr[1] * x;
+        } else {
+            x = arr[0] / bWidth;
+            width = arr[0] / x;
+            height = arr[1] / x;
+        }
+        $('div.max').find('img:first').css({ "width": width + "px", "height": height + "px" });
+    }
+
+    function initTable() {
+        $('#dataTable').datagrid({
+            url: turl + 'Goods/GetDataList',
+            method: 'POST',
+            //queryParams: { 'id': id },
+            idField: 'Id',
+            fit: true,
+            fitColumns: false,
+            singleSelect: false,
+            selectOnCheck: false,
+            checkOnSelect: false,
+            //sortName: 'Id',
+            //sortOrder: 'asc',
+            //rownumbers: true,
+            pagination: true,
+            pageSize: 30,
+            nowrap: true,
+            pageList: [10, 20, 30, 50, 100, 150, 200],
+            showFooter: true,
+            columns: [[
+                { title: 'ck', field: 'ID', checkbox: true },
+                {
+                    title: '图片', field: 'GoodImgBase64', width: 40, formatter: function (value, row) {
+
+                        return '<img src="data:image;base64,' + value + '" style="height:40px;width:40px;" onmouseover="imgMouseOver(this);" onmouseout="imgMouseOut(this);" onmousemove="imgMouseMove(this);" />';
+                    }
+                },
+                { title: '货品编码', field: 'Code', width: 90 },
+                {
+                    title: '货品名称', field: 'Name', width: 80, formatter: function (value, row, index) {
+                        undefined
+                        return '<span  title=' + value + '>' + value + '</span>'
+                    }
+                },
+                {
+                    title: '型号', field: 'Spec', width: 130, formatter: function (value, row, index) {
+                        undefined
+                        return '<span  title=' + value + '>' + value + '</span>'
+                    }
+                },
+      
+                { title: '条码', field: 'Barcode', width: 40 },
+                { title: '批次号', field: 'BatchSN', width: 40 },
+                { title: '拼音缩写', field: 'ShortSpell', width: 40 },
+                { title: '货品类别', field: 'SortId', width: 40 },
+                { title: '实际数量', field: 'RealQty', width: 40 },
+                { title: '账面数量', field: 'AccountQty', width: 40 },
+                { title: '货品属性', field: 'PorpertyId', width: 40 },
+                { title: '成本核算ID', field: 'CostCheckId', width: 40 },
+                { title: '库存上限', field: 'StockUpper', width: 40 },
+                { title: '最小库存', field: 'StockLower', width: 40 },
+                { title: '库存数量', field: 'StockQty', width: 40 },
+                { title: '清货价', field: 'ClearPrice', width: 40 },
+                { title: '单位', field: 'Unit', width: 40 },
+                { title: '单位比率', field: 'UnitRate', width: 40 },
+                { title: '简称', field: 'ShortName', width: 40 },
+                { title: '是否无效', field: 'IsInvalid', width: 40 },
+                { title: '查询数量', field: 'QueryQty', width: 40 },
+                { title: '生产日期', field: 'ProduceDate', width: 40 },
+                { title: '有效日期', field: 'EffectDate', width: 40 },
+                { title: '创建时间', field: 'CreateTime', width: 40 },
+                { title: '创建用户', field: 'CreateUserNo', width: 40 },
+                { title: '更新用户', field: 'ChUserNo', width: 40 },
+                { title: '更新时间', field: 'Chtime', width: 130 },
+                { title: '单位重量', field: 'UnitWeight', width: 40 },
+                { title: '备注', field: 'Remark', width: 40 },
+                { title: '总量', field: 'Amount', width: 40 },
+                { title: '是否基本单位', field: 'IsBUnit', width: 40 },
+               
+                { title: '零售价', field: 'RetailPrice', width: 40 },
+                { title: '批发价', field: 'BatchPrice', width: 40 },
+                { title: '会员价', field: 'MemberPrice', width: 40 },
+                { title: '促销价', field: 'PromotePrice', width: 40 },
+                { title: '采购价', field: 'PurchasePrice', width: 40 },
+                { title: '预留价', field: 'ReservedPrice', width: 40 },
+                { title: '等级', field: 'Degree', width: 40 },
+                { title: '自定义1', field: 'ExtendF1', width: 40 },
+                { title: '自定义2', field: 'ExtendF2', width: 40 },
+                { title: '自定义3', field: 'ExtendF3', width: 40 },
+                { title: '分类编号', field: 'SortCode', width: 40 },
+                { title: '货品属性', field: 'PropertyName', width: 40 },
+                { title: '贸易单位ID', field: 'TradeUnitId', width: 40 },
+                { title: '品质日期', field: 'QualityDate', width: 40 },
+                { title: '品质类别', field: 'QualityKind', width: 40 },
+                { title: '税率', field: 'TaxRate', width: 40 },
+                { title: '状态', field: 'Flag', width: 40 }
+            ]],
+            onBeforeLoad: function (param) {
+
+            },
+            onBeforeSelect: function () {
+                return false;
+            }
+        });
+    }
+
+    $(function () {
+        initTable();
+
+        //添加数据
+        $('#add').click(function () {
+
+            dialogOpen({
+                id: 'form',
+                title: '添加数据',
+                width: formWidth,
+                height: formHeight,
+                url: turl + 'Goods/Form',
+            });
+        });
+
+        //修改数据
+        $('#edit').click(function () {
+            var selected = $("#dataTable").datagrid("getChecked");
+            if (!selected || !selected.length || selected.length > 1) {
+                dialogError('请选择一条记录修改!');
+                return;
+            }
+            var id = selected[0].Id;
+      
+            dialogOpen({
+                id: 'form',
+                title: '修改数据',
+                width: formWidth,
+                height: formHeight,
+                url: turl + 'Goods/Form?id=' + id,
+            });
+        });
+
+        //删除数据
+        $('#delete').click(function () {
+            var checked = $("#dataTable").datagrid("getChecked");
+            if (!checked || !checked.length) {
+                dialogError('请选择要删除的记录!');
+                return;
+            }
+            var ids = $.map(checked, function (item) {
+                return item['Id'];
+            });
+
+            dialogComfirm('确认删除吗？', function () {
+                $.postJSON(turl + 'Goods/DeleteData', { ids: JSON.stringify(ids) }, function (resJson) {
+                    if (resJson.Success) {
+                        $('#dataTable').datagrid('clearSelections').datagrid('clearChecked');
+                        $('#dataTable').datagrid('reload');
+                        dialogMsg('删除成功!');
+                    }
+                    else {
+                        dialogError(resJson.Msg);
+                    }
+                });
+            });
+        });
+    });
+</script>

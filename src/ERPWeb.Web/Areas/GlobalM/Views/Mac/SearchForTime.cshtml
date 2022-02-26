@@ -1,0 +1,18 @@
+﻿<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Mac/SearchForTime.js"></script>
+<style type="text/css"></style>
+
+<div class="macToolBar">
+    <input id="tbxMacModelDefault" value='@ViewData["model"]' />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="tbxMacWSDefault" value='@ViewData["wsIdList"]' />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="tbxMacLineDefault" value='@ViewData["lineIdList"]' />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'" onclick="clickSearch(this);">搜索</button>
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'" onclick="clickSearchClear(this);">清除</button>
+</div>
+
+
+<table class="easyui-datagrid" title="SearchMac" style=""></table>

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Console/Index.js"></script>
+<style type="text/css">
+    #ConsoleDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+    #ConsoleDialog > .dialogTable tr td {
+        padding: 4px 0px 3px 0px;
+    }
+</style>
+
+<div id="searchConsoleToolBar">
+    <a id="btnConsoleInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnConsoleUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchConsoleIP4" type="text" style="" class="easyui-textbox" data-options="prompt:'IP4'" />
+    <input id="searchConsoleName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    机种:<input id="searchConsoleModel" class="easyui-combobox" data-options="" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchConsoleIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--全部--',
+			                value: '-1'
+		                },{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnConsoleSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnConsoleClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="ConsoleTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="ConsoleDialog" class="easyui-dialog" title="ConsoleDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgConsoleId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>IP4</td>
+            <td><input style="width:100%" type="text" id="dgConsoleIP4" class="easyui-textbox" data-options="prompt:'ip4'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgConsoleName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>机种</td>
+            <td>
+                <input id="dgConsoleModel" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgConsoleIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+
+</div>
+

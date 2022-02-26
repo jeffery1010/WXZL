@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/OURPM/PowerInRes/Index.js"></script>
+
+
+<div div="searchRelationPMToolbar">
+    &nbsp;<span class="lblLeadTitle">权限</span>&nbsp;
+    <input id="searchRelationPMPowerId" type="text" class="tbxId" readonly="readonly" />
+    <span id="searchRelationPMPowerName" class="lblLeadTitle"></span>
+    <input id="selectRelationPMSelected" class="hidden" />
+    <br />
+    <input id="searchRelationPMCode" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchRelationPMName" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <select class="easyui-combobox" id="searchRelationPMIsEnable">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select class="easyui-combobox" id="searchRelationPMIsValid">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-search'" href="#" id="searchRelationPMSearch">搜索</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-clear'" href="#" id="searchRelationPMClear">清除</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="#" id="searchRelationPMKeep">保存</a>
+</div>
+
+<table class="easyui-treegrid" id="selectRelationPMTable"></table>
+<div id="dgPartialPower" style="margin:0px auto;"></div>

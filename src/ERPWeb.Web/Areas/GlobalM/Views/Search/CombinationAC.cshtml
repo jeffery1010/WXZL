@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "CombinationAC";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Search/CombinationAC.js"></script>
+
+<div class="divWhere"></div>
+<div id="indexCombinationAC"></div>
+<a id="btnCombinationACSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+<a id="btnCombinationACClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+<a id="btnCombinationACDownload" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载选中</a>
+<a id="btnCombinationACDownloadAll" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载所有</a>
+<input id="CombinationACIdList" style="width:0px;height:0px;display:block;border:none;" />
+<table id="SearchCombinationACTable" class="easyui-datagrid" style=""></table>
+
+<div class="max" style="position:fixed;top:0px;right:0px;">
+    <img id="imgCombinationACMaxShow" />
+</div>
+

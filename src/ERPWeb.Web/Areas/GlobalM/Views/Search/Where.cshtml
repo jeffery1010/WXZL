@@ -1,0 +1,60 @@
+﻿<link href="~/Scripts/easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+<link href="~/Scripts/easyui/themes/icon.css" rel="stylesheet" />
+<script src="~/Scripts/easyui/jquery.easyui.min.js"></script>
+<script src="~/Scripts/Search/Where.js"></script>
+<link href="~/Static/Css/All.css" rel="stylesheet" />
+<input id="WhereType" value="@ViewData["type"]" readonly="readonly" class="hidden" />
+<table class="tableSearch">
+    <tr>
+        <td style="width:50px;text-align:center;">机&nbsp;种</td>
+        <td id="tdWhereModelList"></td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">工&nbsp;位</td>
+        <td id="tdWhereWSList"><span style="color:red;font-weight:bold;">请先选择机种</span></td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">线&nbsp;别</td>
+        <td id="tdWhereLineList"><span style="color:red;font-weight:bold;">请先选择机种</span></td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">机&nbsp;台</td>
+        <td><input id="searchWhereMacName" title="Mac" type="text" readonly="readonly" /><input class="hidden" type="text" title="value" /></td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">相&nbsp;机</td>
+        <td id="tdWhereCameraList"><input id="searchWhereCamera" title="camera" class="easyui-textbox" style="width:70%;"/>(以英语输入法逗号隔开)</td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">位&nbsp;置</td>
+        <td id="tdWherePartList"><span style="color:red;font-weight:bold;">请先选择机种，再选择工位</span></td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">结&nbsp;果</td>
+        <td>
+            <input title="Judge" class="easyui-combobox" data-options="
+                   valueField: 'Id',
+		           textField: 'Text',
+		            data: [{
+			            Text: '全部',
+			            Id: '-1'
+		            },{
+			            Text: 'NG',
+			            Id: '0'
+		            },{
+			            Text: 'OK',
+			            Id: '1'
+		            }]" />
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">时&nbsp;间</td>
+        <td>
+            <input title="timeBegin"  class="easyui-datetimebox" data-options="width:'200px',formatter:formatter,parser:parser" />-
+            <input title="timeEnd"  class="easyui-datetimebox" data-options="width:'200px',formatter:formatter,parser:parser" />
+        </td>
+    </tr>
+</table>
+
+<div id="searchWhereMac" style="margin:0px auto;"></div>
+<div id="searchWhereLocation" style="margin:0px auto;"></div>

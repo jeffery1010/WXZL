@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/WorkStation/Index.js"></script>
+<style type="text/css">
+    #WorkStationDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #WorkStationDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+</style>
+
+<div id="searchWorkStationToolBar">
+    <a id="btnWorkStationInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnWorkStationUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchWorkStationCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchWorkStationName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <input id="searchWorkStationSequence" type="text" style="" class="easyui-textbox" data-options="prompt:'序号'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    机种:<input id="searchWorkStationModel" class="easyui-combobox" data-options="" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchWorkStationStatus" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--全部--',
+			                value: '-1'
+		                },{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnWorkStationSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnWorkStationClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="WorkStationTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="WorkStationDialog" class="easyui-dialog" title="WorkStationDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgWorkStationId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号</td>
+            <td><input style="width:100%" type="text" id="dgWorkStationCode" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgWorkStationName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>排序</td>
+            <td><input style="width:100%" type="text" id="dgWorkStationSequence" class="easyui-textbox" data-options="prompt:'排序'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>机种</td>
+            <td>
+                <input id="dgWorkStationModel" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgWorkStationStatus" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+
+</div>
+

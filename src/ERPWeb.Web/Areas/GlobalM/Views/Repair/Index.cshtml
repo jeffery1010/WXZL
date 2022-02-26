@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Repair/Index.js"></script>
+
+
+
+<div id="searchRTToolBar">
+    <a id="btnRTInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnRTUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnRTDelete" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-remove'">删除</a>
+    <input id="searchRTCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchRTName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    投入方式:<input id="searchRTInputtype" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--不选择--',
+			                value: ''
+		                },{
+			                text: '最小捆包',
+			                value: '最小捆包'
+		                },{
+			                text: 'Tray',
+			                value: 'Tray'
+		                }]" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnRTSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnRTClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="RTTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="RTDialog" class="easyui-dialog" title="RTDialog" style="padding:10px 10px 10px 10px;width:800px;">
+    <table class="dialogTable">
+        <tr>
+            <td><input style="width:100%" type="text" id="dgRTId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td><input style="width:100%" type="text" id="dgRTCode" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td><input style="width:100%" type="text" id="dgRTName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td><input style="width:100%" type="text" id="dgRTMaxnum" class="easyui-textbox" data-options="prompt:'限额'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>
+                <input id="dgRTInputtype" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--不选择--',
+			                value: ''
+		                },{
+			                text: '最小捆包',
+			                value: '最小捆包'
+		                },{
+			                text: 'Tray',
+			                value: 'Tray'
+		                }]" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+    <input style="width:0px;height:0px;display:block;overflow:hidden;border:none;" type="text" id="dgPortIdList" readonly="readonly" />
+    <table id="dgPortTable" class="easyui-datagrid"></table>
+
+</div>
+

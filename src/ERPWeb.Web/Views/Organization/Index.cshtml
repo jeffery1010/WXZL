@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+
+<script src="~/Scripts/OURPM/Organization/Index.js"></script>
+<div id="searchOraganizationToolBar">
+    <a id="btnOrganizationInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnOrganizationUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnOrganizationDelete" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-remove'">删除</a>
+
+    <input id="searchName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <select id="searchOrganizationVisible" class="easyui-combobox">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select id="searchOrganizationEnable" class="easyui-combobox">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    <input id="searchOrganizationVersion" type="text" style="" class="easyui-textbox" data-options="prompt:'版本'" />
+    <input id="searchOrganizationApplication" type="text" style="" class="easyui-textbox" data-options="prompt:'系统'" />
+
+    <a id="btnOrganizationSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnOrganizationClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+</div>
+
+<table id="OrganizationTable" class="easyui-treegrid"></table>
+
+<div id="OrganizationDialog" class="easyui-dialog" title="OrganizationDialog" style="padding:10px 10px 10px 10px;">
+    <table class="dialogTable">
+        <tr class="hidden">
+            <td>序号：</td>
+            <td><input style="width:100%;" type="text" id="dgOrganizationId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编码：</td>
+            <td><input style="width:100%;" type="text" id="dgCode" class="easyui-textbox" data-options="prompt:'编码'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称：</td>
+            <td><input style="width:100%" type="text" id="dgName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>备注：</td>
+            <td><input style="width:100%" type="text" id="dgRemark" class="easyui-textbox" data-options="prompt:'备注'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>父级：</td>
+            <td><select style="width:100%" id="dgOrganizationParentCode" class="easyui-combobox"></select></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态：</td>
+            <td>
+                <input style="width:47%" id="dgOrganizationVisible" class="easyui-switchbutton" data-options="onText:'可见',offText:'不可见'">
+                <input style="width:47%" id="dgOrganizationEnable" class="easyui-switchbutton" data-options="onText:'激活',offText:'未激活'">
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr class="hidden">
+            <td>版本：</td>
+            <td><input style="width:100%" id="dgOrganizationVersion" type="text" class="easyui-textbox" data-options="prompt:'版本'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr class="hidden">
+            <td>系统：</td>
+            <td><input style="width:100%" id="dgOrganizationApplication" type="text" class="easyui-textbox" data-options="prompt:'系统'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+</div>
+

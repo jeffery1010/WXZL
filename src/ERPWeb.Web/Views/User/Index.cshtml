@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/OURPM/User/Index.js"></script>
+
+<div id="searchUserToolBar">
+    <a id="btnUserInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnUserUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnUserDelete" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-remove'">删除</a>
+    <br />
+    <input type="text" id="searchUserNo" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input type="text" id="searchUserName" class="easyui-textbox" data-options="prompt:'名称'" />
+    <input type="text" id="searchTel" class="easyui-textbox" data-options="prompt:'座机'" />
+    <input type="text" id="searchEmail" class="easyui-textbox" data-options="prompt:'邮箱'" />
+    <br />
+    <input type="text" id="searchAddress" class="easyui-textbox" data-options="prompt:'地址'" />
+    <input type="text" id="searchIdCard" class="easyui-textbox" data-options="prompt:'身份证'" />
+    <input type="text" id="searchMobilePhone" class="easyui-textbox" data-options="prompt:'手机'" />
+
+    <select id="searchUserVisible" class="easyui-combobox">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select id="searchUserEnable" class="easyui-combobox">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    <a id="btnUserSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnUserClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="UserTable" class="easyui-datagrid"></table>
+
+<div id="UserDialog" class="easyui-dialog" title="UserDialog">
+    <table class="dialogTable">
+        <tr>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr class="hidden">
+            <td>序号：</td>
+            <td><input style="width:140px" type="text" id="dgUserId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号：</td>
+            <td><input style="width:140px" type="text" id="dgUserNo" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称：</td>
+            <td><input style="width:140px" type="text" id="dgUserName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>座机：</td>
+            <td><input style="width:140px" type="text" id="dgTel" class="easyui-textbox" data-options="prompt:'座机'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>邮箱：</td>
+            <td><input style="width:140px" type="text" id="dgEmail" class="easyui-textbox" data-options="prompt:'邮箱'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>地址：</td>
+            <td><input style="width:140px" type="text" id="dgAddress" class="easyui-textbox" data-options="prompt:'地址'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>IdCard：</td>
+            <td><input type="text" id="dgIdCard" class="easyui-textbox" data-options="prompt:'身份证'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>手机：</td>
+            <td><input type="text" id="dgMobilePhone" class="easyui-textbox" data-options="prompt:'手机'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>生日：</td>
+            <td><input id="dgBirthDay" type="text" class="easyui-datebox" required="required" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="text" id="dgPassword" class="easyui-textbox" data-options="prompt:'密码'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态：</td>
+            <td>
+                <input style="width:47%" id="dgUserVisible" class="easyui-switchbutton" data-options="onText:'可见',offText:'不可见'">
+                <input style="width:47%" id="dgUserEnable" class="easyui-switchbutton" data-options="onText:'激活',offText:'未激活'">
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+    <input class="hidden" style="width:140px" type="text" id="dgRelationIdList" readonly="readonly" />
+</div>
+

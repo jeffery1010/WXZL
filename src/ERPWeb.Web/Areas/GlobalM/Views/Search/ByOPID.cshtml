@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ByOPID";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Search/ByOPID.js"></script>
+<link href="~/Static/Css/All.css" rel="stylesheet" />
+
+<table id="SearchByOPIDWhere" class="tableType1">
+    <tr>
+        <td style="width:50px;text-align:center;">机&nbsp;种</td>
+        <td colspan="2" id="tdByOPIDModelList">
+            <input type="radio" name="Model" value="496" />496&nbsp;&nbsp;
+            <input type="radio" name="Model" value="497" />497&nbsp;&nbsp;
+            <input type="radio" name="Model" value="ACX" />ACX&nbsp;&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">工&nbsp;位</td>
+        <td class="WorkStation" colspan="2">
+            <span style="color:red;font-weight:bold;">请先选择机种</span>
+        </td>
+    </tr>
+    <tr>
+        <td style="width:50px;text-align:center;">OPID</td>
+        <td>
+            <input type="text" name="OPID" style="width:100%;border:none;" />
+        </td>
+        <td style="width:180px;">
+            <a id="btnByOPIDSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+            <a id="btnByOPIDClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+            <a id="btnByOPIDDownload" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载选中</a>
+            <a id="btnByOPIDDownloadAll" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载所有</a>
+        </td>
+    </tr>
+</table>
+
+<input id="ByOPIDIdList" class="hidden" />
+<table id="SearchByOPIDTable" class="easyui-datagrid" style=""></table>
+
+<div class="max" style="position:fixed;top:0px;right:0px;">
+    <img id="imgByOPIDMaxShow" />
+</div>

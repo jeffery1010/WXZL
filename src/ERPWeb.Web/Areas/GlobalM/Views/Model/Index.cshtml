@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Model/Index.js"></script>
+<style type="text/css">
+    #ModelDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #ModelDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+</style>
+
+<div id="searchModelToolBar">
+    <a id="btnModelInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnModelUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchModelCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchModelName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchModelIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '--全部--',
+			                value: '-1'
+		                },{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnModelSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnModelClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="ModelTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="ModelDialog" class="easyui-dialog" title="ModelDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgModelId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号</td>
+            <td><input style="width:100%" type="text" id="dgModelCode" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgModelName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgModelIsValid" class="easyui-combobox" data-options="
+                       textField: 'text',
+                       valueField: 'value',
+		                data: [{
+			                text: '失效',
+			                value: '0'
+		                },{
+			                text: '激活',
+			                value: '1'
+		                }]" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+
+</div>
+

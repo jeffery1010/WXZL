@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/XPath/Index.js"></script>
+<style type="text/css">
+    #XPathDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #XPathDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+
+        #XPathDialog #dgWSId {
+            width: 0px;
+            height: 0px;
+            display: block;
+            overflow: hidden;
+            border: none;
+        }
+
+    #XPathDialog {
+        width: 60%;
+    }
+
+        #XPathDialog #dgXPathWSId, #XPathDialog #dgXPathWSCode {
+            width: 80px;
+        }
+
+        #searchXPathRateMin, #searchXPathRateMax{
+            width: 80px;
+        }
+</style>
+
+<div id="searchXPathToolBar">
+    <a id="btnXPathInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnXPathUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchXPathXPath" type="text" style="" class="easyui-textbox" data-options="prompt:'XPath'" />
+    <input id="searchXPathToPath" type="text" style="" class="easyui-textbox" data-options="prompt:'ToPath'" />
+    <input id="searchXPathExtend" type="text" style="" class="easyui-textbox" data-options="prompt:'Extend'" />
+    <input id="searchXPathUserNo" type="text" style="" class="easyui-textbox" data-options="prompt:'UserNo'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    所属机台:<input id="searchXPathMacId" type="text" style="width:50px;" onclick="selMac();" readonly="readonly" /><span id="searchXPathMacName"></span>
+    <br />
+    <a id="btnXPathSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnXPathClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+    <input id="searchXPathRateMin" type="text" style="" class="easyui-textbox" data-options="prompt:'最低频率'" />-<input id="searchXPathRateMax" type="text" style="" class="easyui-textbox" data-options="prompt:'最高频率'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchXPathIsValid" class="easyui-combobox" data-options="" />
+
+</div>
+
+
+<table id="XPathTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="XPathDialog" class="easyui-dialog" title="XPathDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgXPathId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>机台</td>
+            <td><input id="dgXPathMacId" type="text" style="width:50px;" onclick="selMac();" readonly="readonly" /><span id="dgXPathMacName"></span></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>XPath</td>
+            <td><input style="width:100%" type="text" id="dgXPathXPath" class="easyui-textbox" data-options="prompt:'XPath'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>ToPath</td>
+            <td><input style="width:100%" type="text" id="dgXPathToPath" class="easyui-textbox" data-options="prompt:'ToPath'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>追加</td>
+            <td><input style="width:100%" type="text" id="dgXPathExtend" class="easyui-textbox" data-options="prompt:'追加'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>频率</td>
+            <td><input style="width:100%" type="text" id="dgXPathRate" class="easyui-textbox" data-options="prompt:'频率(次/秒)'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>工号</td>
+            <td><input style="width:100%" type="text" id="dgXPathUserNo" class="easyui-textbox" data-options="prompt:'员工'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgXPathIsValid" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div id="searchXPathMac" style="margin:0px auto;"></div>

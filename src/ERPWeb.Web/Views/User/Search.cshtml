@@ -1,0 +1,42 @@
+﻿
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/OURPM/User/Search.js"></script>
+<style type="text/css"></style>
+
+<div class="userToolBar">
+    编号:<input type="text" class="inputtext" title="code" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    名称:<input type="text" class="inputtext" title="name" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    座机:<input type="text" class="inputtext" title="tel" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <br />
+    邮件:<input type="text" class="inputtext" title="email" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    地址:<input type="text" class="inputtext" title="address" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    身份证:<input type="text" class="inputtext" title="idCard" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <br />
+    电话:<input type="text" class="inputtext" title="mobilePhone" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="easyui-combobox" title="isenable">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="easyui-combobox" title="isvalid">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'" onclick="clickSearch(this);">搜索</button>
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'" onclick="clickSearchClear(this);">清除</button>
+
+</div>
+
+
+<table class="easyui-datagrid" title="SearchPartialUser" data-options="fitColumns:true,singleSelect:true" style=""></table>

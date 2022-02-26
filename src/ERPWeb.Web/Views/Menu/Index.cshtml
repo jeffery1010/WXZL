@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/OURPM/Menu/Index.js"></script>
+<div id="searchMenuToolBar">
+    <a id="btnMenuInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnMenuUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <a id="btnMenuDelete" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-remove'">删除</a>
+
+    <input id="searchMenuCode" type="text" style="" class="easyui-textbox" data-options="prompt:'编号'" />
+    <input id="searchMenuName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <input id="searchMenuUrl" type="text" style="" class="easyui-textbox" data-options="prompt:'Url'" />
+    <select id="searchMenuVisible" class="easyui-combobox">
+        <option value="-1">--可见度--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    <select id="searchMenuEnable" class="easyui-combobox">
+        <option value="-1">--激活状态--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+
+
+    <a id="btnMenuSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnMenuClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+</div>
+
+<table id="MenuTable" class="easyui-treegrid"></table>
+
+<div id="MenuDialog" class="easyui-dialog" title="MenuDialog" style="padding:10px 10px 10px 10px;">
+    <table class="dialogTable">
+        <tr class="hidden">
+            <td>序号：</td>
+            <td><input style="width:100%" type="text" id="dgMenuId" readonly="readonly" class="easyui-textbox" data-options="prompt:'序号(只读)'" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>编号：</td>
+            <td><input style="width:100%" id="dgMenuCode" type="text" class="easyui-textbox" data-options="prompt:'编号'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称：</td>
+            <td><input style="width:100%" type="text" id="dgMenuName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>备注：</td>
+            <td><input style="width:100%" type="text" id="dgMenuRemark" class="easyui-textbox" data-options="prompt:'备注'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>父级：</td>
+            <td><select style="width:100%" id="dgMenuParentCode" class="easyui-combobox"></select></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>Url：</td>
+            <td><input style="width:100%" type="text" id="dgMenuUrl" class="easyui-textbox" data-options="prompt:'Url'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态：</td>
+            <td>
+                <input style="width:47%" id="dgMenuVisible" class="easyui-switchbutton" data-options="onText:'可见',offText:'不可见'">
+                <input style="width:47%" id="dgMenuEnable" class="easyui-switchbutton" data-options="onText:'激活',offText:'未激活'">
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+

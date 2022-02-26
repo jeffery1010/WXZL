@@ -1,0 +1,38 @@
+﻿
+<link href="~/EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />
+<link href="~/EasyUI/themes/icon.css" rel="stylesheet" />
+<link href="~/Static/All.css" rel="stylesheet" />
+
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+
+<script src="~/EasyUI/jquery.easyui.min.js"></script>
+<script src="~/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+
+<script src="~/Scripts/OURPM/Power/Search.js"></script>
+<style type="text/css"></style>
+
+<div class="powerToolBar">
+    编号:<input type="text" title="code" class="easyui-textbox" data-options="prompt:'编号'" style="width:139px;" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    名称:<input type="text" title="name" class="easyui-textbox" data-options="prompt:'名称'" style="width:139px;" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="easyui-combobox" title="isenable" style="width:139px;">
+        <option value="-1">--选择可见--</option>
+        <option value="0">不可见</option>
+        <option value="1">可见</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="easyui-combobox" title="isvalid" style="width:139px;">
+        <option value="-1">--选择激活--</option>
+        <option value="0">未激活</option>
+        <option value="1">激活</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'" onclick="clickSearch(this);">搜索</button>
+    <button class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'" onclick="clickSearchClear(this);">清除</button>
+
+</div>
+
+
+<table class="easyui-datagrid" title="SearchPartialPower" data-options="fitColumns:true,singleSelect:true" style=""></table>

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "ForTime";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/Search/ForTime.js"></script>
+
+<div class="divWhere"></div>
+<div id="indexForTime"></div>
+<a id="btnForTimeSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+<a id="btnForTimeClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+<a id="btnForTimeDownload" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载选中</a>
+<a id="btnForTimeDownloadAll" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-print'">下载所有</a>
+<input id="FotTimeIdList" style="width:0px;height:0px;display:block;border:none;" />
+<table id="SearchForTimeTable" class="easyui-datagrid" style=""></table>
+
+<div class="max" style="position:fixed;top:0px;right:0px;">
+    <img id="imgForTimeMaxShow" />
+</div>

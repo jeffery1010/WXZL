@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Mac/Index.js"></script>
+<style type="text/css">
+    #MacDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #MacDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+
+        #MacDialog #dgWSId {
+            width: 0px;
+            height: 0px;
+            display: block;
+            overflow: hidden;
+            border: none;
+        }
+
+    #MacDialog {
+        width: 58%;
+    }
+
+        #MacDialog #dgMacWSId, #MacDialog #dgMacWSCode {
+            width: 80px;
+        }
+
+        #MacDialog #dgSearchWorkStationCode, #MacDialog #dgSearchWorkStationModel, #MacDialog #dgSearchWorkStationIsValid {
+            width: 80px;
+        }
+</style>
+
+<div id="searchMacToolBar">
+    <a id="btnMacInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnMacUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchMacIP4" type="text" style="" class="easyui-textbox" data-options="prompt:'IP4'" />
+    <input id="searchMacName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    状态:<input id="searchMacIsValid" class="easyui-combobox" data-options="" />
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btnMacSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnMacClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="MacTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="MacDialog" class="easyui-dialog" title="MacDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgMacId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>IP4</td>
+            <td><input style="width:100%" type="text" id="dgMacIP4" class="easyui-textbox" data-options="prompt:'IP4'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgMacName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>
+                <input id="dgMacIsValid" class="easyui-combobox" data-options="" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>工位</td>
+            <td>
+                <input id="dgMacWSId" class="easyui-textbox" data-options="prompt:'工位序号'" readonly="readonly" />
+                <input id="dgMacWSCode" class="easyui-textbox" data-options="prompt:'工位编号'" readonly="readonly" />
+            </td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+    <input id="dgSearchWorkStationCode" type="text" style="" class="easyui-textbox" data-options="prompt:'工位编号'" />
+    工位机种:<input id="dgSearchWorkStationModel" class="easyui-combobox" data-options="" />
+    <input id="dgSearchWorkStationIsValid" class="easyui-combobox" data-options="" />
+    <a id="btndgWorkStationSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btndgWorkStationClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+    <table id="dgWSTable" class="easyui-datagrid"></table>
+</div>
+

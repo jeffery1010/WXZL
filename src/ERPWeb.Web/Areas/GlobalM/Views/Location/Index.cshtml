@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_List.cshtml";
+}
+<script src="~/Scripts/JQueryTool/CheckVal.js"></script>
+<script src="~/Scripts/JQueryTool/Method.js"></script>
+<script src="~/Scripts/IMGX/Location/Index.js"></script>
+<style type="text/css">
+    #LocationDialog {
+        padding: 10px 50px 10px 10px;
+        line-height: 20px;
+    }
+
+        #LocationDialog > .dialogTable tr td {
+            padding: 4px 0px 3px 0px;
+        }
+</style>
+
+<div id="searchLocationToolBar">
+    <a id="btnLocationInsert" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-add'">新增</a>
+    <a id="btnLocationUpdate" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-edit'">修改</a>
+    <input id="searchLocationName" type="text" style="" class="easyui-textbox" data-options="prompt:'名称'" />
+    <input id="searchLocationFeatures" type="text" style="" class="easyui-textbox" data-options="prompt:'特性'" />
+    <a id="btnLocationSearch" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-search'">搜索</a>
+    <a id="btnLocationClear" class="easyui-linkbutton" href="#" data-options="iconCls:'icon-clear'">清除</a>
+
+</div>
+
+
+<table id="LocationTable" class="easyui-datagrid" style="height:543px"></table>
+
+
+<div id="LocationDialog" class="easyui-dialog" title="LocationDialog">
+    <table class="dialogTable">
+        <tr>
+            <td>序号</td>
+            <td><input style="width:100%" type="text" id="dgLocationId" class="easyui-textbox" data-options="prompt:'序号(只读)'" readonly="readonly" /></td>
+            <td class="tableAtten"><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>名称</td>
+            <td><input style="width:100%" type="text" id="dgLocationName" class="easyui-textbox" data-options="prompt:'名称'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+        <tr>
+            <td>特性</td>
+            <td><input style="width:100%" type="text" id="dgLocationFeatures" class="easyui-textbox" data-options="prompt:'特性'" /></td>
+            <td><div class="errorMsg"></div></td>
+        </tr>
+    </table>
+
+</div>
+
